@@ -1,5 +1,5 @@
 # Projeto Tecnologias e Multimédia - Golf
-Versão do Unity 6000.3.10f1
+Versão do Unity 6000.3.9f1
 
 Professores: Paula Rego,
              Alexandre Silva,
