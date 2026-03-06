@@ -6,6 +6,7 @@ Professores: Paula Rego,
              Luis Miguel Silva
 
 Elementos do Grupo:
+
 Ruben Lima - limaruben@ipvc.pt
 
 João Pereira - o.pereira@ipvc.pt
