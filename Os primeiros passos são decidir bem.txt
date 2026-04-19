@@ -1,0 +1,119 @@
+Os primeiros passos são decidir bem o conceito e montar a base técnica no Unity, antes de começarem a “polir” o jogo.
+
+1. Fechar a ideia do jogo
+Em 30–40 minutos, definam no papel ou num doc curto:
+
+Objetivo do jogador: é meter a bola no buraco em menos tacadas possível e no menor tempo possível.
+A arena pode conter vários objetos para "atrasar/dificultar" o jogador.
+
+!! Ver se é possível ter um "NPC" a jogar contra o user principal.
+
+Mecânica principal: arrastar o rato para definir direção/força (tipo Angry Birds), carregar para “carregar” potência, etc.
+
+
+Regras básicas:
+
+Quando é vitória do jogador ou "NPC" se possível  (quando o primeiro chega ao buraco, se for o jogador ganha a stage, senão mostra a diferença em relação com o NPC).
+
+E Game Over quando o jogador perde as stages contra o npc em termos de tacadas (SENDO POSSIVEL UM MODO DE JOGO POR TEMPO).
+
+
+Perspetiva da câmara: vista de cima (top‑down), terceira pessoa atrás da bola(melhor opção), câmara fixa à arena, etc.
+
+
+Ambiente: indoor (arena fechada), outdoor (campo pequeno), estilo gráfico simples/low‑poly ou mais “realista”.
+
+
+
+
+2. Preparar o projeto Unity
+Criar o projeto em Unity (a versão pedida no enunciado, ou apontar a versão usada no README).
+
+Criar uma cena principal, ex.: MainScene.
+
+Configurar o Build Settings com essa cena logo de início (para não esquecer mais tarde).
+
+Criar pastas mínimas no Project:
+
+Scripts
+
+Prefabs
+
+Scenes
+
+Materials / Art / Audio (mesmo que ainda estejam vazias)
+
+3. Prototipar a jogabilidade base (bola e tacada)
+Foca-te só em fazer a bola mexer-se de forma aceitável, sem arena bonita:
+
+Criar um plano simples como chão.
+
+Criar uma esfera para a bola:
+
+Adicionar Rigidbody.
+
+Adicionar Collider (já vem com a Sphere, confirma).
+
+Fazer um script simples, ex. BallController, que:
+
+Recebe input (rato ou teclado).
+
+Aplica uma força na direção desejada com Rigidbody.AddForce(...).
+
+Garantir que usas FixedUpdate() para aplicar forças (requisito de física do TP).
+
+Só quando a “tacada” for minimamente divertida é que avançam para o resto.
+
+4. Câmera adequada ao estilo
+Escolham uma de início:
+
+Câmera que segue a bola por trás (tipo “golfe 3D” clássico).
+
+Vista de cima da arena a seguir a bola.
+
+Criar um script simples, ex. CameraFollow, que segue a bola com um offset constante, suavizado com Lerp se quiserem.
+
+5. Estrutura base de gestão de jogo
+Logo no início criem um script, ex. GameManager, para:
+
+Guardar estado: número de tacadas, pontuação, estado do jogo (a jogar / vitória / derrota).
+
+Ter funções públicas: AddStroke(), ScorePoint(), GameOver(), WinGame(), RestartLevel().
+
+Tratar do restart com SceneManager.LoadScene(...).
+
+Mesmo que inicialmente só chamem RestartLevel() a uma tecla, fica logo preparado para cumprir os requisitos (Game Over + reinício).
+
+6. Colisões e tags (buraco, obstáculos, pickups)
+Depois da base:
+
+Criar o “buraco” ou alvo principal com Collider marcado como Trigger.
+
+Dar tags importantes: "Hole", "Obstacle", "Pickup", etc.
+
+Na bola ou em objetos com script de deteção de colisão:
+
+Em OnCollisionEnter / OnTriggerEnter, verificar a tag e reagir (pontuar, Game Over, vitória).
+
+Isto alinha diretamente com o que o enunciado pede em termos de colisões e tags.
+
+7. Planeamento mínimo e Git
+Mesmo que simplificado:
+
+Abrir repositório Git desde já, com .gitignore para Unity.
+
+Fazer commits pequenos e frequentes:
+
+“Add ball prototype”
+
+“Implement camera follow”
+
+“Add GameManager with basic win/lose logic”
+
+Escrever um rascunho de README com:
+
+Título do jogo.
+
+Descrição rápida da ideia.
+
+Versão do Unity.
