@@ -1,5 +1,8 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.Audio;
+
+
 
 public class GolfBall : MonoBehaviour
 {
@@ -7,6 +10,8 @@ public class GolfBall : MonoBehaviour
 
     public float[] forceLevels = { 8f, 13f, 20f };
     private int currentForceLevel = 1; // 0,1,2 => mostra 1,2,3
+    public AudioClip shotSound;
+    private AudioSource audioSource;
 
     public float minVelocity = 0.15f;
     private bool canShoot = true;
@@ -17,6 +22,7 @@ public class GolfBall : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
         UpdateForceUI();
         Debug.Log("GolfBall Start OK");
     }
@@ -68,8 +74,18 @@ public class GolfBall : MonoBehaviour
         {
             float shotPower = forceLevels[currentForceLevel];
 
+            if (audioSource != null && shotSound != null)
+            {
+                audioSource.PlayOneShot(shotSound, 0.5f);
+            }
+
             rb.AddForce(camForward * shotPower, ForceMode.Impulse);
             canShoot = false;
+
+            if (GlobalGameManager.Instance != null)
+            {
+                GlobalGameManager.Instance.AddShot();
+            }
 
             if (gameManager != null)
             {

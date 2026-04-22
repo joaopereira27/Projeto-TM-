@@ -5,7 +5,16 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        Debug.Log("Botão Jogar clicado");
+        if (GlobalGameManager.Instance != null)
+        {
+            GlobalGameManager.Instance.ResetShots();
+        }
+
         SceneManager.LoadScene("GolfArena");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
