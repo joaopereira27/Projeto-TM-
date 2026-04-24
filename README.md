@@ -63,3 +63,7 @@ O projeto ainda inclui:
 - materiais físicos da bola
 - texturas personalizadas
 - interface gráfica de menus
+
+
+## Como abrir o projeto
+Fazer o download do projeto para uma pasta. Depois no Unity Hub adicionar um projeto através do disco e selecionar a pasta onde está o projeto.Quando abrir o projeto abrir o Scene Asset chamado Main Menu e depois é só executar o programa.
